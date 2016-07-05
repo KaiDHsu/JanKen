@@ -1,3 +1,70 @@
 body {
     background: white;
+    margin: 0px;
+    padding: 0px;
+}
+
+.rockImg {
+    background-image: url(../images/rock.png);
+}
+
+.paperImg {
+    background-image: url(../images/paper.png);
+}
+
+.scissorImg {
+    background-image: url(../images/scissor.png);
+}
+
+.selectionBtn, .selection {
+    background-size: 100%;
+    width: 115px;
+    height: 115px;
+}
+
+.selectionBtn {
+    cursor: pointer;
+}
+
+.scores , .timers {
+    width: 49%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.scores canvas {
+    width: 100px;
+    height: 50px;
+}
+
+.scores > div, .timers > div {
+    padding: 15px;
+}
+
+.scores > div > div {
+    width: 49%;
+    display: inline-block;
+}
+
+.player {
+    width: 49%;
+    display: inline-block;
+    text-align: center;
+}
+
+.npc {
+    width: 49%;
+    display: inline-block;
+    text-align: center;
+}
+
+.npc > div {
+    display: inline-block;
+    width: 34%;
+    margin-top: 8%;
+}
+
+canvas {
+    border: 1px solid black;
 }
