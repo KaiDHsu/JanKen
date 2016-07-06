@@ -15,11 +15,16 @@ $(function() {
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
     winCTX.textAlign = loseCTX.textAlign = drawCTX.textAlign = timerCTX.textAlign = "center";
+    winCTX.fillStyle = 'green';
+    loseCTX.fillStyle = 'red';
 
     /* event bind for on click on start */
     startRef.on('click', function() {
         if (validateForm()) {
             restartRef[0].removeAttribute('disabled');
+            for(i = 0; i < playerRef[0].children.length; i++) {
+                playerRef[0].children.item(i).removeAttribute('disabled');
+            }
             gameStarter();
         }
     });

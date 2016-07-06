@@ -64,6 +64,10 @@ body {
     cursor: pointer;
 }
 
+button[disabled] {
+    opacity: 0.5;
+}
+
 .npc {
     width: 49%;
     max-width: 400px;
