@@ -11,7 +11,8 @@ $(function() {
         playerRef = $('.janken .player'),
         wins = losses = draws = 0,
         counterInSeconds = 0,
-        timeoutRef = undefined;
+        timeoutRef = undefined,
+        selectionArray = ["rock", "paper", "scissor"];
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
     winCTX.textAlign = loseCTX.textAlign = drawCTX.textAlign = timerCTX.textAlign = "center";
@@ -22,7 +23,7 @@ $(function() {
     startRef.on('click', function() {
         if (validateForm()) {
             restartRef[0].removeAttribute('disabled');
-            for(i = 0; i < playerRef[0].children.length; i++) {
+            for (i = 0; i < playerRef[0].children.length; i++) {
                 playerRef[0].children.item(i).removeAttribute('disabled');
             }
             gameStarter();
@@ -38,7 +39,29 @@ $(function() {
 
     /* event bind for on click of rock-paper-scissor options */
     playerRef.on('click', 'button', function(event) {
-        console.log(event.target.value);
+        var selectionIndex = selectionArray.indexOf(event.target.value),
+        playerChoice,
+        cpuChoice;
+
+        if (selectionIndex === 0) {
+            selectionArray.unshift(selectionArray.pop());
+        } else if (selectionIndex === 2) {
+            selectionArray.push(selectionArray.shift());
+        }
+
+        playerChoice = selectionArray.indexOf(event.target.value);
+        cpuChoice = Math.floor(Math.random() * 3);
+        console.log(selectionArray[playerChoice] + " " + selectionArray[cpuChoice])
+        if (playerChoice === cpuChoice) {
+            draws++;
+            updateScores("draw");
+        } else if (playerChoice > cpuChoice) {
+            wins++;
+            updateScores("win");
+        } else {
+            losses++;
+            updateScores("loss");
+        }
     });
 
     /* preventing submit action of form used to group validations */
@@ -49,7 +72,7 @@ $(function() {
     /* clears and redraws the score canvas, slightly optimized for performance */
     updateScores = function(outcome) {
         switch (outcome) {
-            case "lose":
+            case "loss":
                 loseCTX.clearRect(0, 0, 100, 50);
                 loseCTX.fillText(losses, 50, 35);
                 break;
@@ -74,7 +97,7 @@ $(function() {
     /* clears and redraws timerDisplay */
     updateTimer = function() {
         var timerText;
-        if(counterInSeconds <= 10) {
+        if (counterInSeconds <= 10) {
             timerCTX.fillStyle = 'red';
             timerText = "You have " + counterInSeconds + "s left!";
         } else {
@@ -126,5 +149,8 @@ $(function() {
         } else {
             alert("You Lose...");
         }
-    }
+    };
+
+    updateScores();
+    timerCTX.fillText("00:00", 170, 45);
 });
