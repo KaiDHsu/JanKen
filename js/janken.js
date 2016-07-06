@@ -11,7 +11,7 @@ $(function() {
         playerRef = $('.janken .player'),
         wins = losses = draws = 0,
         counterInSeconds = 0,
-        timeoutRef = undefined,
+        intervalRef = undefined,
         selectionArray = ["rock", "paper", "scissor"];
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
@@ -40,8 +40,8 @@ $(function() {
     /* event bind for on click of rock-paper-scissor options */
     playerRef.on('click', 'button', function(event) {
         var selectionIndex = selectionArray.indexOf(event.target.value),
-        playerChoice,
-        cpuChoice;
+            playerChoice,
+            cpuChoice;
 
         if (selectionIndex === 0) {
             selectionArray.unshift(selectionArray.pop());
@@ -109,12 +109,12 @@ $(function() {
     };
 
     gameStarter = function() {
-        clearTimeout(timeoutRef);
+        clearInterval(intervalRef);
         counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
         wins = losses = draws = 0;
         updateScores();
         updateTimer();
-        timeoutRef = setTimeout(countdownLoop, 1000);
+        intervalRef = setInterval(countdownLoop, 1000);
     };
 
     validateForm = function() {
@@ -134,14 +134,16 @@ $(function() {
         counterInSeconds--;
         updateTimer();
         if (counterInSeconds === 0) {
+            clearInterval(intervalRef);
             endGame();
-            return;
         }
-        timeoutRef = setTimeout(countdownLoop, 1000);
     };
 
     /* calculates winner and displays */
     endGame = function() {
+        for (i = 0; i < playerRef[0].children.length; i++) {
+            playerRef[0].children.item(i).setAttribute('disabled', 'disabled');
+        }
         if (wins === losses) {
             alert("It's a Draw!");
         } else if (wins > losses) {
