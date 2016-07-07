@@ -49,6 +49,10 @@ h3 {
     background-size: 100%;
     width: 115px;
     height: 115px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 15px;
+    box-shadow: 5px 5px lightgrey;
 }
 
 .scores,
@@ -87,6 +91,11 @@ h3 {
     cursor: pointer;
 }
 
+.player button:active {
+    box-shadow: 2px 2px darkgrey;
+    transform: translateY(3px);
+}
+
 button[disabled] {
     opacity: 0.5;
 }
@@ -100,10 +109,9 @@ button[disabled] {
 
 .npc > div {
     display: inline-block;
-    width: 34%;
     min-width: 115px;
     max-height: 115px;
-    margin: 4%;
+    margin-bottom: 10%;
 }
 
 .janken {
