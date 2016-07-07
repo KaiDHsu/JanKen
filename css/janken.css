@@ -123,6 +123,7 @@ button[disabled] {
     height: 30px;
     margin: 10px;
     display: block;
+    font-family: 'Nova Square', cursive;
     text-align: center;
     -webkit-user-select: none;
     -moz-user-select: none;
