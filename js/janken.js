@@ -9,10 +9,13 @@ $(function() {
         startRef = $('#start'),
         restartRef = $('#restart'),
         playerRef = $('.janken .player'),
+        choiceRef = $('.janken .npc'),
         wins = losses = draws = 0,
         counterInSeconds = 0,
         intervalRef = undefined,
-        selectionArray = ["rock", "paper", "scissor"];
+        selectionArray = ["rock", "paper", "scissor"],
+        cpuSelectionRef = document.getElementById('cpuSelection'),
+        playerSelectionRef = document.getElementById('playerSelection');
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
     winCTX.textAlign = loseCTX.textAlign = drawCTX.textAlign = timerCTX.textAlign = "center";
@@ -57,6 +60,9 @@ $(function() {
 
         playerChoice = selectionArray.indexOf(event.target.value);
         cpuChoice = Math.floor(Math.random() * 3);
+
+        playerSelectionRef.className = "selection " + selectionArray[playerChoice];
+        cpuSelectionRef.className = "selection " + selectionArray[cpuChoice];
 
         if (playerChoice === cpuChoice) {
             draws++;
@@ -118,6 +124,9 @@ $(function() {
         clearInterval(intervalRef);
         counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
         wins = losses = draws = 0;
+        choiceRef.show();
+        playerSelectionRef.className = "selection";
+        cpuSelectionRef.className = "selection";
         updateScores();
         updateTimer();
         intervalRef = setInterval(countdownLoop, 1000);

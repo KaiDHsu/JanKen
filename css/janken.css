@@ -1,10 +1,35 @@
+html {
+    background: linear-gradient(160deg, #2CB5EA 25%, #1FC8E0 50%, #0FB8B0 95%);
+    height: 100%;
+}
+
 body {
-    background: white;
     margin: 0px;
     padding: 0px;
     min-width: 400px;
     max-width: 800px;
     margin: auto;
+    text-align: center;
+    background: linear-gradient(180deg, lightgrey 5%, ghostwhite 40%, white 50%);
+    font-family: 'Nova Square', cursive;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header {
+    border-bottom: 5px solid #2CB5EA;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0px;
+}
+
+h3 {
+    margin-bottom: 5px;
 }
 
 .rock {
@@ -24,6 +49,10 @@ body {
     background-size: 100%;
     width: 115px;
     height: 115px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 15px;
+    box-shadow: 5px 5px lightgrey;
 }
 
 .scores,
@@ -34,24 +63,15 @@ body {
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    font-family: 'Nova Square', cursive;
 }
 
 .timers > div {
     width: 100%;
 }
 
-.scores h3 {
-    margin-bottom: 5px;
-}
-
 .scores > div {
     padding: 15px;
     border: 3px solid black;
-}
-
-.timers > div {
-    padding: 15px;
 }
 
 .scores > div > div {
@@ -71,6 +91,11 @@ body {
     cursor: pointer;
 }
 
+.player button:active {
+    box-shadow: 2px 2px darkgrey;
+    transform: translateY(3px);
+}
+
 button[disabled] {
     opacity: 0.5;
 }
@@ -84,10 +109,9 @@ button[disabled] {
 
 .npc > div {
     display: inline-block;
-    width: 34%;
     min-width: 115px;
     max-height: 115px;
-    margin: 4%;
+    margin-bottom: 10%;
 }
 
 .janken {
@@ -99,6 +123,11 @@ button[disabled] {
     height: 30px;
     margin: 10px;
     display: block;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .timerInput label {
@@ -112,7 +141,7 @@ button[disabled] {
 .timerSubmits button {
     width: 110px;
     height: 50px;
-    margin: 10px 35px;
+    margin: 10px 35px 30px 35px;
     cursor: pointer;
     font-size: 30px;
     font-family: 'Nova Square', cursive;
@@ -125,9 +154,9 @@ button[disabled] {
 }
 
 .timerSubmits button:active {
-  background-color: darkgreen;
-  box-shadow: 2px 2px darkgrey;
-  transform: translateY(3px);
+    background-color: darkgreen;
+    box-shadow: 2px 2px darkgrey;
+    transform: translateY(3px);
 }
 
 .timerSubmits button[value='stop'] {
@@ -135,5 +164,5 @@ button[disabled] {
 }
 
 #timerDisplay {
-    margin: 10px;
+    margin: 0px 10px 10px 10px;
 }

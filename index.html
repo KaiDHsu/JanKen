@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <header>
+        <h1>JANKEN - Rock, Paper, Scissors</h1>
+    </header>
     <section class="scores">
         <h1>Scoreboard</h1>
         <div>
@@ -52,20 +55,23 @@
                 </div>
             </form>
             <div class="timerDisplay">
+                <h3>COUNTDOWN TIMER</h3>
                 <canvas id="timerDisplay" width="340" height="70"></canvas>
             </div>
         </div>
     </section>
     <section class="janken">
         <div class="player">
+            <h1>Select Play</h1>
             <button class="rock selectionBtn" value="rock" disabled></button>
             <button class="paper selectionBtn" value="paper" disabled></button>
             <button class="scissor selectionBtn" value="scissor" disabled></button>
         </div>
-        <div class="npc">
-            <div><img class="rock selection"></div>
-            <div><img class="paper selection"></div>
-            <div><img class="scissor selection"></div>
+        <div class="npc" style="display:none;">
+            <h1>Player Choice</h1>
+            <div id="playerSelection" class="selection"></div>
+            <h1>Computer Choice</h1>
+            <div id="cpuSelection" class="selection"></div>
         </div>
     </section>
 </body>
