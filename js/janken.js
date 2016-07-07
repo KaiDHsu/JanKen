@@ -9,13 +9,15 @@ $(function() {
         startRef = $('#start'),
         restartRef = $('#restart'),
         playerRef = $('.janken .player'),
-        choiceRef = $('.janken .npc'),
+        choiceRef = $('.janken'),
+        scoreRef = $('.scores'),
+        timerDisplayRef = $('.timerDisplay'),
         wins = losses = draws = 0,
         counterInSeconds = 0,
         intervalRef = undefined,
         selectionArray = ["rock", "paper", "scissor"],
-        cpuSelectionRef = document.getElementById('cpuSelection'),
-        playerSelectionRef = document.getElementById('playerSelection');
+        cpuSelectionRef = $('#cpuSelection'),
+        playerSelectionRef = $('#playerSelection');
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
     winCTX.textAlign = loseCTX.textAlign = drawCTX.textAlign = timerCTX.textAlign = "center";
@@ -61,17 +63,23 @@ $(function() {
         playerChoice = selectionArray.indexOf(event.target.value);
         cpuChoice = Math.floor(Math.random() * 3);
 
-        playerSelectionRef.className = "selection " + selectionArray[playerChoice];
-        cpuSelectionRef.className = "selection " + selectionArray[cpuChoice];
+        playerSelectionRef.removeClass("rock paper scissor").addClass(selectionArray[playerChoice]);
+        cpuSelectionRef.removeClass("rock paper scissor").addClass(selectionArray[cpuChoice]);
 
         if (playerChoice === cpuChoice) {
             draws++;
+            playerSelectionRef.removeClass("win lose");
+            cpuSelectionRef.removeClass("win lose");
             updateScores("draw");
         } else if (playerChoice > cpuChoice) {
             wins++;
+            playerSelectionRef.addClass("win").removeClass("lose");
+            cpuSelectionRef.addClass("lose").removeClass("win");
             updateScores("win");
         } else {
             losses++;
+            cpuSelectionRef.addClass("win").removeClass("lose");
+            playerSelectionRef.addClass("lose").removeClass("win");
             updateScores("loss");
         }
     });
@@ -111,7 +119,7 @@ $(function() {
         var timerText;
         if (counterInSeconds <= 10) {
             timerCTX.fillStyle = 'red';
-            timerText = "You have " + counterInSeconds + "s left!";
+            timerText = counterInSeconds > 0 ? "You have " + counterInSeconds + "s left!" : "Time is Up!";
         } else {
             timerCTX.fillStyle = 'black';
             timerText = formatTimer(counterInSeconds);
@@ -124,9 +132,11 @@ $(function() {
         clearInterval(intervalRef);
         counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
         wins = losses = draws = 0;
-        choiceRef.show(1000);
-        playerSelectionRef.className = "selection";
-        cpuSelectionRef.className = "selection";
+        choiceRef.show(500);
+        scoreRef.show(500);
+        timerDisplayRef.show(200);
+        playerSelectionRef.removeClass("rock paper scissor win lose");
+        cpuSelectionRef.removeClass("rock paper scissor win lose");
         updateScores();
         updateTimer();
         intervalRef = setInterval(countdownLoop, 1000);
@@ -173,8 +183,5 @@ $(function() {
         playerRef.children().prop('disabled', true);
         minutesRef.prop('disabled', false);
         secondsRef.prop('disabled', false);
-    }
-
-    updateScores();
-    timerCTX.fillText("00:00", 170, 45);
+    };
 });
