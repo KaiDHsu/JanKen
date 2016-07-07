@@ -138,10 +138,10 @@ button[disabled] {
     display: block;
     font-family: 'Nova Square', cursive;
     text-align: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .timerInput label {
