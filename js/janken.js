@@ -35,6 +35,8 @@ $(function() {
             secondsRef.prop('disabled', true);
             gameStarter();
         } else if (event.target.value === 'stop') {
+            timerCTX.clearRect(0, 0, 340, 70);
+            timerCTX.fillText('Game Ended!', 170, 45);
             endGame();
         }
     });
