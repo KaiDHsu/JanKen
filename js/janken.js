@@ -33,6 +33,10 @@ $(function() {
             startRef.prop('value', 'stop');
             minutesRef.prop('disabled', true);
             secondsRef.prop('disabled', true);
+            restartRef.show(500);
+            choiceRef.show(500);
+            scoreRef.show(500);
+            timerDisplayRef.show(200);
             gameStarter();
         } else if (event.target.value === 'stop') {
             timerCTX.clearRect(0, 0, 340, 70);
@@ -135,9 +139,6 @@ $(function() {
         secondsRef.val(secondsRef.val() || 0);
         counterInSeconds = 60 * parseInt(minutesRef.val()) + parseInt(secondsRef.val());
         wins = losses = draws = 0;
-        choiceRef.show(500);
-        scoreRef.show(500);
-        timerDisplayRef.show(200);
         playerSelectionRef.removeClass("rock paper scissor win lose");
         cpuSelectionRef.removeClass("rock paper scissor win lose");
         updateScores();
