@@ -34,8 +34,7 @@ $(function() {
             minutesRef.prop('disabled', true);
             secondsRef.prop('disabled', true);
             gameStarter();
-        } else if (event.target.value === 'stop' && validateForm()) {
-            resetButtons();
+        } else if (event.target.value === 'stop') {
             endGame();
         }
     });
@@ -130,7 +129,9 @@ $(function() {
 
     gameStarter = function() {
         clearInterval(intervalRef);
-        counterInSeconds = 60 * parseInt(minutesRef[0].value || 0) + parseInt(secondsRef[0].value || 0);
+        minutesRef.val(minutesRef.val() || 0);
+        secondsRef.val(secondsRef.val() || 0);
+        counterInSeconds = 60 * parseInt(minutesRef.val()) + parseInt(secondsRef.val());
         wins = losses = draws = 0;
         choiceRef.show(500);
         scoreRef.show(500);
@@ -143,7 +144,14 @@ $(function() {
     };
 
     validateForm = function() {
-        return minutesRef[0].checkValidity() || secondsRef[0].checkValidity();
+        if (minutesRef[0].value > 0) {
+            secondsRef.prop('required', false);
+        } else if (secondsRef[0].value > 0) {
+            minutesRef.prop('required', false);
+        } else {
+            secondsRef.prop('min', 1);
+        }
+        return timerForm[0].checkValidity();
     };
 
     /* parses input times into Ints and formats them into double digits for use of timerDisplay */
@@ -181,7 +189,7 @@ $(function() {
         startRef.prop('value', 'start');
         restartRef.prop('disabled', true);
         playerRef.children().prop('disabled', true);
-        minutesRef.prop('disabled', false);
-        secondsRef.prop('disabled', false);
+        minutesRef.prop({ 'disabled': false, 'required': true, 'min': 0 });
+        secondsRef.prop({ 'disabled': false, 'required': true, 'min': 0 });
     };
 });
