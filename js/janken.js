@@ -130,7 +130,7 @@ $(function() {
 
     gameStarter = function() {
         clearInterval(intervalRef);
-        counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
+        counterInSeconds = 60 * parseInt(minutesRef[0].value || 0) + parseInt(secondsRef[0].value || 0);
         wins = losses = draws = 0;
         choiceRef.show(500);
         scoreRef.show(500);
@@ -143,7 +143,7 @@ $(function() {
     };
 
     validateForm = function() {
-        return timerForm[0].checkValidity();
+        return minutesRef[0].checkValidity() || secondsRef[0].checkValidity();
     };
 
     /* parses input times into Ints and formats them into double digits for use of timerDisplay */
