@@ -1,10 +1,31 @@
+html {
+    background: linear-gradient(160deg, #2CB5EA 25%, #1FC8E0 50%, #0FB8B0 95%);
+    height: 100%;
+}
+
 body {
-    background: white;
     margin: 0px;
     padding: 0px;
     min-width: 400px;
     max-width: 800px;
     margin: auto;
+    text-align: center;
+    background-color: ghostwhite;
+    font-family: 'Nova Square', cursive;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header {
+    border-bottom: 5px solid #2CB5EA;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0px;
 }
 
 .rock {
@@ -34,7 +55,6 @@ body {
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    font-family: 'Nova Square', cursive;
 }
 
 .timers > div {
@@ -99,6 +119,10 @@ button[disabled] {
     height: 30px;
     margin: 10px;
     display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .timerInput label {
@@ -125,9 +149,9 @@ button[disabled] {
 }
 
 .timerSubmits button:active {
-  background-color: darkgreen;
-  box-shadow: 2px 2px darkgrey;
-  transform: translateY(3px);
+    background-color: darkgreen;
+    box-shadow: 2px 2px darkgrey;
+    transform: translateY(3px);
 }
 
 .timerSubmits button[value='stop'] {
