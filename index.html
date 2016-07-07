@@ -14,6 +14,7 @@
 
 <body>
     <section class="scores">
+        <h1>Scoreboard</h1>
         <div>
             <div class="wins">
                 <h3>WINS</h3>
@@ -30,14 +31,23 @@
         </div>
     </section>
     <section class="timers">
+        <h1>Timer Settings</h1>
         <div>
             <form id="timerForm">
                 <div class="timerInput">
-                    <input id="minutes" type="number" name="minutes" placeholder="Enter minutes >= 0" min="0" required>
-                    <input id="seconds" type="number" name="seconds" placeholder="Enter seconds >= 0" min="0" required>
+                    <div>
+                        <label>Minutes
+                            <input id="minutes" type="number" name="minutes" placeholder="Enter minutes >= 0" min="0" required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>Seconds
+                            <input id="seconds" type="number" name="seconds" placeholder="Enter seconds >= 0" min="0" required>
+                        </label>
+                    </div>
                 </div>
                 <div class="timerSubmits">
-                    <button id="start">Start</button>
+                    <button id="start" value="start">Start</button>
                     <button id="restart" disabled>Restart</button>
                 </div>
             </form>

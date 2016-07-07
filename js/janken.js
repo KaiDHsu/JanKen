@@ -20,13 +20,18 @@ $(function() {
     loseCTX.fillStyle = 'red';
 
     /* event bind for on click on start */
-    startRef.on('click', function() {
-        if (validateForm()) {
+    startRef.on('click', function(event) {
+        if (event.target.value === 'start' && validateForm()) {
             restartRef[0].removeAttribute('disabled');
-            for (i = 0; i < playerRef[0].children.length; i++) {
-                playerRef[0].children.item(i).removeAttribute('disabled');
-            }
+            playerRef.children().prop('disabled', false);
+            startRef.html('Stop');
+            startRef.prop('value', 'stop');
+            minutesRef.prop('disabled', true);
+            secondsRef.prop('disabled', true);
             gameStarter();
+        } else if (event.target.value === 'stop' && validateForm()) {
+            resetButtons();
+            endGame();
         }
     });
 
@@ -37,7 +42,8 @@ $(function() {
         }
     });
 
-    /* event bind for on click of rock-paper-scissor options */
+    /* event bind for on click of rock-paper-scissor options 
+        shifts the selection array around so that the higher index indicates the winner */
     playerRef.on('click', 'button', function(event) {
         var selectionIndex = selectionArray.indexOf(event.target.value),
             playerChoice,
@@ -51,7 +57,7 @@ $(function() {
 
         playerChoice = selectionArray.indexOf(event.target.value);
         cpuChoice = Math.floor(Math.random() * 3);
-        console.log(selectionArray[playerChoice] + " " + selectionArray[cpuChoice])
+
         if (playerChoice === cpuChoice) {
             draws++;
             updateScores("draw");
@@ -134,16 +140,14 @@ $(function() {
         counterInSeconds--;
         updateTimer();
         if (counterInSeconds === 0) {
-            clearInterval(intervalRef);
             endGame();
         }
     };
 
     /* calculates winner and displays */
     endGame = function() {
-        for (i = 0; i < playerRef[0].children.length; i++) {
-            playerRef[0].children.item(i).setAttribute('disabled', 'disabled');
-        }
+        clearInterval(intervalRef);
+        resetButtons();
         if (wins === losses) {
             alert("It's a Draw!");
         } else if (wins > losses) {
@@ -152,6 +156,15 @@ $(function() {
             alert("You Lose...");
         }
     };
+
+    resetButtons = function() {
+        startRef.html('Start');
+        startRef.prop('value', 'start');
+        restartRef.prop('disabled', true);
+        playerRef.children().prop('disabled', true);
+        minutesRef.prop('disabled', false);
+        secondsRef.prop('disabled', false);
+    }
 
     updateScores();
     timerCTX.fillText("00:00", 170, 45);
