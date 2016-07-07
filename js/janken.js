@@ -124,7 +124,7 @@ $(function() {
         clearInterval(intervalRef);
         counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
         wins = losses = draws = 0;
-        choiceRef.show();
+        choiceRef.show(1000);
         playerSelectionRef.className = "selection";
         cpuSelectionRef.className = "selection";
         updateScores();
