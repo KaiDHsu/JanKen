@@ -10,7 +10,7 @@ body {
     max-width: 800px;
     margin: auto;
     text-align: center;
-    background-color: ghostwhite;
+    background: linear-gradient(180deg, lightgrey 5%, ghostwhite 40%, white 50%);
     font-family: 'Nova Square', cursive;
     height: 100%;
     -webkit-user-select: none;
@@ -115,6 +115,7 @@ button[disabled] {
     height: 30px;
     margin: 10px;
     display: block;
+    text-align: center;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
