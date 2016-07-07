@@ -9,6 +9,7 @@ $(function() {
         startRef = $('#start'),
         restartRef = $('#restart'),
         playerRef = $('.janken .player'),
+        choiceRef = $('.janken .npc'),
         wins = losses = draws = 0,
         counterInSeconds = 0,
         intervalRef = undefined,
@@ -123,6 +124,9 @@ $(function() {
         clearInterval(intervalRef);
         counterInSeconds = 60 * parseInt(minutesRef[0].value) + parseInt(secondsRef[0].value);
         wins = losses = draws = 0;
+        choiceRef.show();
+        playerSelectionRef.className = "selection";
+        cpuSelectionRef.className = "selection";
         updateScores();
         updateTimer();
         intervalRef = setInterval(countdownLoop, 1000);
