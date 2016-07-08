@@ -17,7 +17,10 @@ $(function() {
         intervalRef = undefined,
         selectionArray = ["rock", "paper", "scissor"],
         cpuSelectionRef = $('#cpuSelection'),
-        playerSelectionRef = $('#playerSelection');
+        playerSelectionRef = $('#playerSelection'),
+        modalRef = $('.resultModal'),
+        gameResultRef = $('#gameResult'),
+        resultScoreRef = $('#resultScore');
 
     winCTX.font = loseCTX.font = drawCTX.font = timerCTX.font = "30px Nova Square";
     winCTX.textAlign = loseCTX.textAlign = drawCTX.textAlign = timerCTX.textAlign = "center";
@@ -179,12 +182,16 @@ $(function() {
         clearInterval(intervalRef);
         resetButtons();
         if (wins === losses) {
-            alert("It's a Draw!");
+            gameResultRef.html("It's a Draw!");
         } else if (wins > losses) {
-            alert("You Win!");
+            gameResultRef.html("You Win!");
+            gameResultRef.addClass("win");
         } else {
-            alert("You Lose...");
+            gameResultRef.html("You Lose...");
+            gameResultRef.addClass("lose");
         }
+        resultScoreRef.html(wins +" vs "+losses);
+        modalRef.fadeIn().delay(2000).fadeOut(function(){gameResultRef.removeClass("win lose")});
     };
 
     resetButtons = function() {

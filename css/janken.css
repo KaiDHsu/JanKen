@@ -1,6 +1,7 @@
 html {
     background: linear-gradient(160deg, #2CB5EA 25%, #1FC8E0 50%, #0FB8B0 95%);
-    height: 100%;
+    background-attachment: fixed;
+    height: 100%
 }
 
 body {
@@ -11,7 +12,7 @@ body {
     text-align: center;
     background: linear-gradient(180deg, lightgrey 5%, ghostwhite 40%, white 50%);
     font-family: 'Nova Square', cursive;
-    height: 100%;
+    min-height: 100%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -183,8 +184,40 @@ button[disabled] {
 
 .win {
     border: 5px solid green;
+    color: green;
 }
 
 .lose {
     border: 5px solid red;
+    color: red;
+}
+
+.resultModal {
+    display: none;
+    background: rgba(128,128,128,0.5);
+    z-index: 1;
+    position: fixed;
+    width: 900px;
+    height: 100%;
+    top: 0px;
+}
+
+.modalContent {
+    background: white;
+    position: fixed;
+    top: 50%;
+    height: 160px;
+    margin-top: -80px;
+    width: 900px;
+}
+
+#gameResult {
+    font-size: 3em;
+    margin: 20px 0px;
+    border: none;
+}
+
+#resultScore {
+    font-size: 2em;
+    margin-top: 20px;
 }
